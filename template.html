@@ -115,10 +115,15 @@
         </div>
 
         <div class="row">
-            {% for item in wines %}
+          {% for group in wine_groups %}
+            <div class="col-12 section-title text-center mb-5">
+                <h2 class="d-block">{{ group.title }}</h2>
+            </div>
+        
+            {% for item in group.items %}
                 <div class="col-lg-4 mb-5 col-md-6">
                     <div class="wine_v_1 text-center pb-4 pt-5">
-                    <img src="{{item.image_src}}" alt="Image" class="img-fluid">
+                    <img src="{{item.image}}" alt="Image" class="img-fluid">
                     <div>
                         <h3 class="heading mt-3 mb-3 text-dark">{{item.name}}</font></h3>
                         <p>
@@ -128,7 +133,9 @@
                     </div>
                     </div>
                 </div>
-            {% endfor %}          
+            {% endfor %}   
+                  
+          {% endfor %}
         </div>
       </div>
     </div>
