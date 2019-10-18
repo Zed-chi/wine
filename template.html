@@ -126,10 +126,13 @@
                     <img src="{{item.image}}" alt="Image" class="img-fluid">
                     <div>
                         <h3 class="heading mt-3 mb-3 text-dark">{{item.name}}</font></h3>
-                        <p>
-                        Сорт винограда - {{item.sort}}<br/>
-                        <span class="price">{{item.price}} р.</span>
-                        </p>
+
+                        {% if item.sort %}
+                          <p>
+                          Сорт винограда - {{item.sort}}<br/>
+                          <span class="price">{{item.price}} р.</span>
+                          </p>
+                        {% endif %}
                     </div>
                     </div>
                 </div>
