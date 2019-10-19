@@ -115,27 +115,36 @@
         </div>
 
         <div class="row">
-          {% for group in wine_groups %}
+          {% for categorie in wine_categories %}
             <div class="col-12 section-title text-center mb-5">
-                <h2 class="d-block">{{ group.title }}</h2>
+              <h2 class="d-block">{{ categorie.title }}</h2>
             </div>
         
-            {% for item in group.items %}
-                <div class="col-lg-4 mb-5 col-md-6">
-                    <div class="wine_v_1 text-center pb-4 pt-5">
-                    <img src="{{item.image}}" alt="Image" class="img-fluid">
-                    <div>
-                        <h3 class="heading mt-3 mb-3 text-dark">{{item.name}}</font></h3>
-
-                        {% if item.sort %}
-                          <p>
-                          Сорт винограда - {{item.sort}}<br/>
-                          <span class="price">{{item.price}} р.</span>
-                          </p>
-                        {% endif %}
-                    </div>
-                    </div>
+            {% for wine in categorie.items %}
+              <div class="col-lg-4 mb-5 col-md-6">
+                
+                <div class="wine_v_1 text-center pb-4 pt-5">
+                  {% if wine.discount == None %}
+                    <img src="{{wine.image}}" alt="Image" class="img-fluid ">
+                  {% else %}                    
+                  <img src="{{wine.image}}" alt="Image" class="img-fluid ">
+                    <img src="images/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
+                  {% endif %}
+                  
                 </div>
+                    
+                <h3 class="heading mt-3 mb-3 text-dark">
+                  {{wine.name}}
+                </h3>
+
+                <p>
+                  {% if wine.sort %}
+                    Сорт винограда - {{wine.sort}}
+                    <br/>
+                  {% endif %}
+                  <span class="price">{{wine.price}} р.</span>
+                </p>                                      
+              </div>
             {% endfor %}   
                   
           {% endfor %}
