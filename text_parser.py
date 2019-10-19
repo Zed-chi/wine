@@ -2,7 +2,7 @@ import re
 from collections import namedtuple
 
 
-def get_text(file_path):
+def get_text_from_textfile(file_path):
     with open(file_path, "r", encoding="utf-8") as file:
         return file.read()
 
@@ -17,12 +17,7 @@ def find(pattern, text):
 def get_titles_and_category_blocks(text):
     arr = text.split("\n\n\n")
     titles = list(map(lambda x: x.replace("# ", ""), arr[::2]))
-    cat_blocks = list(
-        map(
-            lambda a: a.strip(),
-            arr[1::2]
-        )
-    )
+    cat_blocks = list(map(lambda a: a.strip(), arr[1::2]))
     return titles, cat_blocks
 
 
@@ -43,28 +38,19 @@ def get_dict_from_wine_block(wine_block):
 
 def get_wine_items_from_category_block(cat_block):
     wine_blocks = get_wine_blocks(cat_block)
-    wine_items = list(
-        map(
-            lambda a:get_dict_from_wine_block(a),
-            wine_blocks
-        )
-    )
+    wine_items = list(map(lambda a: get_dict_from_wine_block(a), wine_blocks))
     return wine_items
 
 
-def get_wine_by_categories(textfile="./wine.txt"):
+def get_wine_by_categories(file_path="./wine.txt"):
     categorized_wine = namedtuple("wine", ["title", "items"])
-    text = get_text(textfile)
+    text = get_text_from_textfile(file_path)
     titles, cat_blocks = get_titles_and_category_blocks(text)
     wine_by_category = list(
-        map(
-            lambda cat: get_wine_items_from_category_block(cat),
-            cat_blocks
-        )
+        map(lambda cat: get_wine_items_from_category_block(cat), cat_blocks)
     )
     return list(
         map(
-            lambda a: categorized_wine(*a),
-            list(zip(titles, wine_by_category))
+            lambda a: categorized_wine(*a), list(zip(titles, wine_by_category))
         )
     )
