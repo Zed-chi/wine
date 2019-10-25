@@ -16,8 +16,8 @@ def find(pattern, text):
 
 def get_titles_and_category_blocks(text):
     arr = text.split("\n\n\n")
-    titles = list(map(lambda x: x.replace("# ", ""), arr[::2]))
-    cat_blocks = list(map(lambda a: a.strip(), arr[1::2]))
+    titles = [x.replace("# ", "") for x in arr[::2]]
+    cat_blocks = [a.strip() for a in arr[1::2]]
     return titles, cat_blocks
 
 
@@ -38,7 +38,7 @@ def get_dict_from_wine_block(wine_block):
 
 def get_wine_items_from_category_block(cat_block):
     wine_blocks = get_wine_blocks(cat_block)
-    wine_items = list(map(lambda a: get_dict_from_wine_block(a), wine_blocks))
+    wine_items = [get_dict_from_wine_block(a) for a in wine_blocks]
     return wine_items
 
 
