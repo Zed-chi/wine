@@ -109,43 +109,43 @@
                 <div class="row">
                     <div class="col-12 section-title text-center mb-5">
                         <h2 class="d-block">Коллекция вин</h2>
-                        <p>Вино — один из самых благородных и многогранных напитков в мире! Виноделие берёт своё начало с незапамятных времён. Вино упоминается в Библии и Коране, греческой и римской мифологии, где были свои боги вина (к примеру, Дионис). Стоит отметить, что почти у каждого народа существует своя легенда, повествующая о появлении божественного эликсира — вина.
+                        <p>
+                            Вино — один из самых благородных и многогранных напитков в мире! Виноделие берёт своё начало с незапамятных времён. Вино упоминается в Библии и Коране, греческой и римской мифологии, где были свои боги вина (к примеру, Дионис). Стоит отметить, что почти у каждого народа существует своя легенда, повествующая о появлении божественного эликсира — вина.
                         </p>
                     </div>
                 </div>
 
                 <div class="row">
                     {% for categorie in wine_categories %}
-                      <div class="col-12 section-title text-center mb-5">
-                          <h2 class="d-block">{{ categorie.title }}</h2>
-                      </div>
-
-                      {% for wine in categorie.items %}
-                        <div class="col-lg-4 mb-5 col-md-6">
-
-                            <div class="wine_v_1 text-center pb-4 pt-5">
-                                {% if wine.discount == None %}
-                                <img src="{{wine.image}}" alt="Image" class="img-fluid ">
-                                {% else %}
-                                <img src="{{wine.image}}" alt="Image" class="img-fluid ">
-                                <img src="images/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
-                                {% endif %}
-
-                            </div>
-
-                            <h3 class="heading mt-3 mb-3 text-dark">
-                                {{wine.name}}
-                            </h3>
-
-                            <p>
-                                {% if wine.sort %}
-                                Сорт винограда - {{wine.sort}}
-                                <br />
-                                {% endif %}
-                                <span class="price">{{wine.price}} р.</span>
-                            </p>
+                        <div class="col-12 section-title text-center mb-5">
+                            <h2 class="d-block">{{ categorie.title }}</h2>
                         </div>
-                      {% endfor %}
+
+                        {% for wine in categorie.items %}
+                            <div class="col-lg-4 mb-5 col-md-6">
+
+                                <div class="wine_v_1 text-center pb-4 pt-5">
+                                    <img src="{{wine.image}}" alt="Image" class="img-fluid ">
+                                    {% if wine.discount %}
+                                        <img src="images/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
+                                    {% endif %}
+                                </div>
+
+                                <h3 class="heading mt-3 mb-3 text-dark">
+                                    {{wine.name}}
+                                </h3>
+
+                                <p>
+                                    {% if wine.sort %}
+                                        Сорт винограда - {{wine.sort}}
+                                        <br />
+                                    {% endif %}
+                                    <span class="price">
+                                        {{wine.price}} р.
+                                    </span>
+                                </p>
+                            </div>
+                        {% endfor %}
 
                     {% endfor %}
                 </div>
