@@ -46,11 +46,8 @@ def get_wine_by_categories(file_path="./wine.txt"):
     categorized_wine = namedtuple("wine", ["title", "items"])
     text = get_text_from_textfile(file_path)
     titles, cat_blocks = get_titles_and_category_blocks(text)
-    wine_by_category = list(
-        map(lambda cat: get_wine_items_from_category_block(cat), cat_blocks)
-    )
-    return list(
-        map(
-            lambda a: categorized_wine(*a), list(zip(titles, wine_by_category))
-        )
-    )
+    wine_by_category = [
+        get_wine_items_from_category_block(cat_block)
+        for cat_block in cat_blocks
+    ]
+    return [categorized_wine(*a) for a in zip(titles, wine_by_category)]
