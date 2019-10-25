@@ -31,7 +31,7 @@ def get_dict_from_wine_block(wine_block):
         "sort": find("(?<=Сорт: ).+", wine_block),
         "price": find("(?<=Цена: ).+", wine_block),
         "image": find("(?<=Картинка: ).+", wine_block),
-        "discount": find("Выгодное предложение", wine_block),
+        "discount": bool(find("Выгодное предложение", wine_block)),
     }
     return wine
 
