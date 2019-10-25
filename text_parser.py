@@ -16,7 +16,7 @@ def find(pattern, text):
 
 def get_titles_and_category_blocks(text):
     arr = text.split("\n\n\n")
-    titles = [x.replace("# ", "") for x in arr[::2]]
+    titles = [x.lstrip("# ") for x in arr[::2]]
     cat_blocks = [a.strip() for a in arr[1::2]]
     return titles, cat_blocks
 
